@@ -9,6 +9,7 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using LaCODESoftware.Tsdm.Views;
 
 namespace LaCODESoftware.Tsdm.ViewModels
 {
@@ -174,8 +175,8 @@ namespace LaCODESoftware.Tsdm.ViewModels
                 }
             }
         }
-        private Window _window;
-        public Window Window
+        private LoginWindow _window;
+        public LoginWindow Window
         {
             get
             {
@@ -191,7 +192,7 @@ namespace LaCODESoftware.Tsdm.ViewModels
             }
         }
 
-        public LoginWindowsViewModel(Window window)
+        public LoginWindowsViewModel(LoginWindow window)
         {
             LogWays = new List<ComboBoxItem>
             {

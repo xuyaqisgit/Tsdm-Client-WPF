@@ -20,6 +20,7 @@ namespace LaCODESoftware.Tsdm.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public Data.Person Person { get; set; }
         public LoginWindow()
         {
             LoginWindowsViewModel loginWindowsViewModel = new LoginWindowsViewModel(this);

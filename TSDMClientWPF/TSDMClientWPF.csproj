@@ -136,13 +136,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Loading.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
     <EmbeddedResource Include="Assets\WebStyle.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\MainBackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -59,11 +59,13 @@ namespace LaCODESoftware.Tsdm.Commands
                 loginWindow.Person.ReadAcess = Int32.Parse(personinfo.readaccess);
                 loginWindow.Person.Username = personinfo.username;
                 loginWindow.LoginComplete = true;
+                loginWindow.Window.Person = loginWindow.Person;
                 loginWindow.Window.Close();
             }
             else
             {
                 MessageBox.Show("登录失败", String.Format("因某些原因登录失败错误代码:{0}", "Log_Failed"), MessageBoxButton.OK);
+                loginWindow.VerfyCodeStream = new BitmapImage(new Uri("http://www.tsdm.me/plugin.php?id=oracle:verify"));
             }
         }
         public async void Check()

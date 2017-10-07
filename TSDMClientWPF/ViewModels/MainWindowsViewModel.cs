@@ -74,6 +74,27 @@ namespace LaCODESoftware.Tsdm.ViewModels
                 }
             }
         }
-
+        private bool _loginComplete = false;
+        public bool LoginComplete
+        {
+            get
+            {
+                return _loginComplete;
+            }
+            set
+            {
+                if (_loginComplete != value)
+                {
+                    _loginComplete = value;
+                    OnPropertyChanged("LoginComplete");
+                }
+            }
+        }
+        public MainWindowsViewModel()
+        {
+            Person = new Person();
+            PersonCollection = new PersonCollection();
+            ForumCollection = new ForumCollection();
+        }
     }
 }

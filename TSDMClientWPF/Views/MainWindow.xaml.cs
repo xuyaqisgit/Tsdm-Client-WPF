@@ -46,10 +46,11 @@ namespace LaCODESoftware.Tsdm.Views
         private void LoadingPage_ProgramLoadingFinished(object sender, EventArgs e)
         {
             MainWindowsViewModel = sender as MainWindowsViewModel;
-            if (MainWindowsViewModel.Islogged)
+            if (MainWindowsViewModel.LoginComplete)
             {
                 this.DataContext = MainWindowsViewModel;
                 ShellFrame.NavigationService.Navigate(MainPage);
+                ShellFrame.NavigationService.RemoveBackEntry();
                 MainPage.DataContext = this.DataContext;
             }
             else
@@ -58,5 +59,11 @@ namespace LaCODESoftware.Tsdm.Views
             }
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindowsViewModel = (MainWindowsViewModel)this.DataContext;
+            MainWindowsViewModel.PersonCollection.LastLog = MainWindowsViewModel.PersonCollection.IndexOf(MainWindowsViewModel.Person);
+            BasicHelper.StreamHelper.WriteObjectToDisk("cookie", MainWindowsViewModel.PersonCollection);
+        }
     }
 }

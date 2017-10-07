@@ -11,6 +11,7 @@ namespace LaCODESoftware.Tsdm.Data
     [Serializable()]
     public class PersonCollection : ObservableCollection<Person>
     {
+        public int LastLog { get; set; }
     }
     [Serializable()]
     public class Person

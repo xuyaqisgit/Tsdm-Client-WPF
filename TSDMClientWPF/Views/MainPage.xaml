@@ -5,37 +5,72 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LaCODESoftware.Tsdm.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainPage" Width="1280" Height="720">
+      d:DesignHeight="360" d:DesignWidth="640"
+      Title="MainPage">
+    <Page.Background>
+        <ImageBrush ImageSource="/LaCODESoftware.Tsdm;component/Assets/MainBackground.jpg"/>
+    </Page.Background>
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <ComboBox Width="80"/>
-                <TextBox Grid.Column="1" Width="120"/>
-                <Button Grid.Column="2" Content="搜索"/>
-                <Button Grid.Column="4" Content="用户中心"/>
-                <Button Grid.Column="5" Content="消息"/>
-                <Button Grid.Column="6" Content="设置"/>
-            </Grid>
-        </Grid>
-
+        <StackPanel Grid.Column="1">
+            <WrapPanel>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label Content="搜索"></Label>
+                    </GroupBox.Header>
+                    <WrapPanel>
+                        <ComboBox ItemsSource="{Binding SearchWays}"/>
+                        <TextBox Width="120"/>
+                        <Button Content="搜索"/>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label Content="工具"></Label>
+                    </GroupBox.Header>
+                    <WrapPanel>
+                        <Button Content="用户"/>
+                        <Button Content="设置"/>
+                        <Button Content="消息"/>
+                        <Button Content="签到"/>
+                    </WrapPanel>
+                </GroupBox>
+            </WrapPanel>
+            <GroupBox>
+                <GroupBox.Header>
+                    <Label Content="用户信息"></Label>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Width="95" Height="110" Source="{Binding Avatar}"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Content="Uid"/>
+                        <Label Grid.Row="1" Content="用户名"/>
+                        <Label Grid.Row="2" Content="阅读权限"/>
+                        <Label Grid.Row="0" Content="{Binding Uid}" Grid.Column="1"/>
+                        <Label Grid.Row="1" Content="{Binding Username}" Grid.Column="1"/>
+                        <Label Grid.Row="2" Content="{Binding ReadAcess}" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Page>

@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LaCODESoftware.Tsdm.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="LoadingPage" Width="1280" Height="720" Loaded="Page_Loaded">
+      d:DesignHeight="360" d:DesignWidth="640"
+      Title="LoadingPage" Loaded="Page_Loaded">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/LaCODESoftware.Tsdm;component/Assets/Loading.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
