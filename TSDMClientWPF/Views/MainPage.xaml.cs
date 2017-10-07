@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LaCODESofware.Tsdm.Views
+namespace LaCODESoftware.Tsdm.Views
 {
     /// <summary>
     /// MainPage.xaml 的交互逻辑

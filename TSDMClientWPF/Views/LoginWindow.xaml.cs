@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaCODESoftware.Tsdm.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace LaCODESoftware.Tsdm.Views
     {
         public LoginWindow()
         {
+            LoginWindowsViewModel loginWindowsViewModel = new LoginWindowsViewModel(this);
+            DataContext = loginWindowsViewModel;
             InitializeComponent();
         }
     }

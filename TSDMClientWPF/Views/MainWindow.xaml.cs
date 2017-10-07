@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaCODESoftware.Tsdm.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,43 @@ namespace LaCODESoftware.Tsdm.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        public LoadingPage LoadingPage { get; set; }
+        public MainPage MainPage { get; set; }
+        public MainWindowsViewModel MainWindowsViewModel { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            LoadingPage = new LoadingPage();
+            MainPage = new MainPage();
+            MainPage.DataContextChanged += MainPage_DataContextChanged;
         }
+
+        private void MainPage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            this.DataContext = MainPage.DataContext;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainPage = new MainPage();
+            LoadingPage.ProgramLoadingFinished += LoadingPage_ProgramLoadingFinished;
+            ShellFrame.NavigationService.Navigate(LoadingPage);
+        }
+
+        private void LoadingPage_ProgramLoadingFinished(object sender, EventArgs e)
+        {
+            MainWindowsViewModel = sender as MainWindowsViewModel;
+            if (MainWindowsViewModel.Islogged)
+            {
+                this.DataContext = MainWindowsViewModel;
+                ShellFrame.NavigationService.Navigate(MainPage);
+                MainPage.DataContext = this.DataContext;
+            }
+            else
+            {
+                Close();
+            }
+        }
+
     }
 }

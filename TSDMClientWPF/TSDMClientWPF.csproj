@@ -33,9 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +58,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\LoginWindowCommands.cs" />
+    <Compile Include="Commands\MainPageCommands.cs" />
+    <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="Helpers\LaCODESoftware.BasicHelper.cs" />
+    <Compile Include="Helpers\LaCODESofware.Tsdm.cs" />
+    <Compile Include="ViewModels\LoginWindowsViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -70,6 +85,14 @@
     <Compile Include="Views\ReplyPage.xaml.cs">
       <DependentUpon>ReplyPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Global\Zh-Hans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,11 +136,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Assets\" />
-    <Folder Include="Data\" />
-    <Folder Include="Global\" />
-    <Folder Include="Helpers\" />
+    <Resource Include="Assets\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+    <EmbeddedResource Include="Assets\WebStyle.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

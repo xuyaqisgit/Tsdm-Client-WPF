@@ -1,0 +1,34 @@
+﻿.post_table {
+    border: 1px solid blue;
+    width:460px;
+}
+.user_td {
+    width: 60px;
+    vertical-align: top;
+}
+.user_div {
+    word-wrap: break-word;
+    width: 60px;
+    vertical-align: top;
+}
+
+.user_avatar_div {
+    width: 60px;
+}
+.avatar_img {
+    width: auto;
+    height: auto;
+    max-width: 57px;
+    max-height: 66px;
+}
+.mainpost_td {
+    width: 400px;
+}
+.post_td {
+    word-wrap: break-word;
+}
+    .post_td > img {
+        width: auto;
+        height: auto;
+        max-width: 390px;
+    }

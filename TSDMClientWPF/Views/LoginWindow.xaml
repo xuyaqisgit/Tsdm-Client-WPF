@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LaCODESoftware.Tsdm.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="300" Width="300">
+        Title="登陆窗口" Height="344.5" Width="600" >
     <Grid>
-        
+        <Image HorizontalAlignment="Left" Height="160" Margin="36,23,0,0" VerticalAlignment="Top" Width="120" Source="{Binding Avatar}">
+        </Image>
+        <Image HorizontalAlignment="Left" Height="100" Margin="244,187,0,0" VerticalAlignment="Top" Width="214" Source="{Binding VerfyCodeStream}">
+            <Image.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding LoginWindowCommands}" CommandParameter="Renew"></MouseBinding>
+            </Image.InputBindings>
+        </Image>
+        <ComboBox HorizontalAlignment="Left" Margin="176,17,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding LogWays}" SelectedIndex="{Binding SelectedLogWaysIndex}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="330,17,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="330,72,0,0" TextWrapping="Wrap" Text="{Binding Password}" VerticalAlignment="Top" Width="120">
+            <TextBox.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding LoginWindowCommands}" CommandParameter="Check"></MouseBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="330,129,0,0" TextWrapping="Wrap" Text="{Binding VerfyCode}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="登录" HorizontalAlignment="Left" Margin="480,17,0,0" VerticalAlignment="Top" Width="76" Command="{Binding LoginWindowCommands}" CommandParameter="Login"/>
+        <Label Content="密码" HorizontalAlignment="Left" Margin="256,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="验证码" HorizontalAlignment="Left" Margin="244,129,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

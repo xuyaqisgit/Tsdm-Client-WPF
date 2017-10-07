@@ -59,5 +59,46 @@ namespace LaCODESoftware.Tsdm.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 .post_table {
+        ///    border: 1px solid blue;
+        ///    width:460px;
+        ///}
+        ///.user_td {
+        ///    width: 60px;
+        ///    vertical-align: top;
+        ///}
+        ///.user_div {
+        ///    word-wrap: break-word;
+        ///    width: 60px;
+        ///    vertical-align: top;
+        ///}
+        ///
+        ///.user_avatar_div {
+        ///    width: 60px;
+        ///}
+        ///.avatar_img {
+        ///    width: auto;
+        ///    height: auto;
+        ///    max-width: 57px;
+        ///    max-height: 66px;
+        ///}
+        ///.mainpost_td {
+        ///    width: 400px;
+        ///}
+        ///.post_td {
+        ///    word-wrap: break-word;
+        ///}
+        ///    .post_td &gt; img {
+        ///        width: auto;
+        ///        height: auto;
+        ///        m [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string WebStyle {
+            get {
+                return ResourceManager.GetString("WebStyle", resourceCulture);
+            }
+        }
     }
 }
