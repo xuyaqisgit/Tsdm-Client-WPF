@@ -6,13 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using LaCODESoftware.Tsdm.Views;
+using System.Windows.Controls;
+using LaCODESoftware.Tsdm.Data;
+using System.Windows;
 
 namespace LaCODESoftware.Tsdm.Commands
 {
     public enum MainPageCommandParameterType
     {
-        MainWindowsLoaded=1,
-        MainWindowsSearchClick=2,
+        gid=1,
+        fid=2,
+        search=3,
+        userinfo=4,
+        setting=5,
+        message=6,
+        check=7
     }
     public class MainPageCommands : ICommand
     {
@@ -28,14 +36,32 @@ namespace LaCODESoftware.Tsdm.Commands
         }
         public void Execute(object parameter)
         {
-            MainPageCommandParameterType type = (MainPageCommandParameterType)Enum.Parse(typeof(MainPageCommandParameterType), (string)parameter, true);
+            Parameter tuple = (Parameter)parameter;
+            MainPageCommandParameterType type = (MainPageCommandParameterType)Enum.Parse(typeof(MainPageCommandParameterType), tuple.Parameter2, true);
             switch (type)
             {
-                case MainPageCommandParameterType.MainWindowsLoaded:
-                    _data.Pages = new LoadingPage();
+                case MainPageCommandParameterType.gid:
+                    GetForumList(tuple);
                     break;
-                
+                case MainPageCommandParameterType.check:
+                    Check();
+                    break;
             }
+        }
+        private async void GetForumList(Parameter tuple)
+        {
+            Json json = await TsdmHelper.GetForumAsync(tuple.Parameter1, _data.Person.PersonCookie);
+            _data.ForumCollection.Clear();
+            foreach (var item in json.forum)
+            {
+                ForumList forumList = new ForumList() { Title = item.title, Parameter = new Parameter() { Parameter1 = item.fid, Parameter2 = "fid" } };
+                _data.ForumCollection.Add(forumList);
+            }
+        }
+        private async void Check()
+        {
+            string CheckCallBack = await TsdmHelper.CheckAsync(_data.Person.PersonCookie);
+            MessageBox.Show(CheckCallBack, "签到回执", MessageBoxButton.OK);
         }
     }
 }

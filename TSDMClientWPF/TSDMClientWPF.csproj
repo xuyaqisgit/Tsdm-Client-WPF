@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\LoginWindowCommands.cs" />
     <Compile Include="Commands\MainPageCommands.cs" />
+    <Compile Include="Data\ConverterCollection.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Helpers\LaCODESoftware.BasicHelper.cs" />
     <Compile Include="Helpers\LaCODESofware.Tsdm.cs" />

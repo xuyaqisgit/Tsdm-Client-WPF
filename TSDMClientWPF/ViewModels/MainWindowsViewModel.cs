@@ -1,10 +1,7 @@
 ﻿using LaCODESoftware.Tsdm.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 
 namespace LaCODESoftware.Tsdm.ViewModels
 {
@@ -58,8 +55,8 @@ namespace LaCODESoftware.Tsdm.ViewModels
                 }
             }
         }
-        private ForumCollection _forumCollection;
-        public ForumCollection ForumCollection
+        private ObservableCollection<ForumList> _forumCollection;
+        public ObservableCollection<ForumList> ForumCollection
         {
             get
             {
@@ -71,6 +68,22 @@ namespace LaCODESoftware.Tsdm.ViewModels
                 {
                     _forumCollection = value;
                     OnPropertyChanged("ForumCollection");
+                }
+            }
+        }
+        private ObservableCollection<ForumList> _groupCollection;
+        public ObservableCollection<ForumList> GroupCollection
+        {
+            get
+            {
+                return _groupCollection;
+            }
+            set
+            {
+                if (_groupCollection != value)
+                {
+                    _groupCollection = value;
+                    OnPropertyChanged("GroupCollection");
                 }
             }
         }
@@ -90,11 +103,31 @@ namespace LaCODESoftware.Tsdm.ViewModels
                 }
             }
         }
+        private BitmapImage _avatar;
+        public BitmapImage Avatar
+        {
+            get
+            {
+                return _avatar;
+            }
+            set
+            {
+                if (_avatar != value)
+                {
+                    _avatar = value;
+                    OnPropertyChanged("Avatar");
+                }
+            }
+        }
         public MainWindowsViewModel()
         {
             Person = new Person();
             PersonCollection = new PersonCollection();
-            ForumCollection = new ForumCollection();
+            ForumCollection = new ObservableCollection<ForumList>();
+            GroupCollection = new ObservableCollection<ForumList>();
+            _mainPageCommands = new Commands.MainPageCommands(this);
         }
+        private Commands.MainPageCommands _mainPageCommands;
+        public Commands.MainPageCommands MainPageCommands { get { return _mainPageCommands; } }
     }
 }

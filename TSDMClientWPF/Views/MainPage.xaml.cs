@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaCODESoftware.Tsdm.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace LaCODESoftware.Tsdm.Views
     /// </summary>
     public partial class MainPage : Page
     {
+        public MainWindowsViewModel MainWindowsViewModel { get; set; }
         public MainPage()
         {
             InitializeComponent();
+        }
+        public MainPage(MainWindowsViewModel mainWindowsViewModel)
+        {
+            InitializeComponent();
+            this.MainWindowsViewModel = mainWindowsViewModel;
+            if (mainWindowsViewModel.Person.ImageUri.Length>0)
+            {
+                MainWindowsViewModel.Avatar = new BitmapImage(new Uri(mainWindowsViewModel.Person.ImageUri));
+            }
+            else
+            {
+                MainWindowsViewModel.Avatar = new BitmapImage(new Uri("http://www.tsdm.me/uc_server/images/noavatar_middle.gif"));
+            }
+            this.DataContext = MainWindowsViewModel;
         }
     }
 }

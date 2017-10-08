@@ -86,12 +86,13 @@ namespace LaCODESoftware.Tsdm.Views
             json = await TsdmHelper.GetForumAsync("", MainWindowsViewModel.Person.PersonCookie);
             foreach (var item in json.group)
             {
-                Json _json = await TsdmHelper.GetForumAsync(item.gid, MainWindowsViewModel.Person.PersonCookie);
-                ForumList forumList = new ForumList() { GroupName = item.title, Gid = item.gid };
-                foreach (var _item in _json.forum)
-                {
-                    forumList.Add(new Data.Forum() { Fid = _item.fid, Title = _item.title, Todaypost = _item.todaypost });
-                }
+                ForumList forumList = new ForumList() { Title = item.title,Parameter=new Tuple<string,string>(item.gid,"gid")};
+                MainWindowsViewModel.GroupCollection.Add(forumList);
+            }
+            json = await TsdmHelper.GetForumAsync(MainWindowsViewModel.GroupCollection[0].Parameter.Parameter1, MainWindowsViewModel.Person.PersonCookie);
+            foreach (var item in json.forum)
+            {
+                ForumList forumList = new ForumList() { Title = item.title, Parameter = new Tuple<string, string>(item.fid, "fid") };
                 MainWindowsViewModel.ForumCollection.Add(forumList);
             }
             #endregion

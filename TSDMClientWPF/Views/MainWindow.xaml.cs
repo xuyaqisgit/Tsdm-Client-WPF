@@ -27,18 +27,15 @@ namespace LaCODESoftware.Tsdm.Views
         {
             InitializeComponent();
             LoadingPage = new LoadingPage();
-            MainPage = new MainPage();
-            MainPage.DataContextChanged += MainPage_DataContextChanged;
         }
 
         private void MainPage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            this.DataContext = MainPage.DataContext;
+            this.MainWindowsViewModel = (MainWindowsViewModel)MainPage.DataContext;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainPage = new MainPage();
             LoadingPage.ProgramLoadingFinished += LoadingPage_ProgramLoadingFinished;
             ShellFrame.NavigationService.Navigate(LoadingPage);
         }
@@ -46,12 +43,13 @@ namespace LaCODESoftware.Tsdm.Views
         private void LoadingPage_ProgramLoadingFinished(object sender, EventArgs e)
         {
             MainWindowsViewModel = sender as MainWindowsViewModel;
+            
             if (MainWindowsViewModel.LoginComplete)
             {
-                this.DataContext = MainWindowsViewModel;
+                MainPage = new MainPage(MainWindowsViewModel);
+                MainPage.DataContextChanged += MainPage_DataContextChanged;
                 ShellFrame.NavigationService.Navigate(MainPage);
                 ShellFrame.NavigationService.RemoveBackEntry();
-                MainPage.DataContext = this.DataContext;
             }
             else
             {
@@ -61,7 +59,6 @@ namespace LaCODESoftware.Tsdm.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MainWindowsViewModel = (MainWindowsViewModel)this.DataContext;
             MainWindowsViewModel.PersonCollection.LastLog = MainWindowsViewModel.PersonCollection.IndexOf(MainWindowsViewModel.Person);
             BasicHelper.StreamHelper.WriteObjectToDisk("cookie", MainWindowsViewModel.PersonCollection);
         }

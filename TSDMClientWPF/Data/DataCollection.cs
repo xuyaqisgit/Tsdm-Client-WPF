@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace LaCODESoftware.Tsdm.Data
 {
@@ -48,30 +50,63 @@ namespace LaCODESoftware.Tsdm.Data
             set { userName = value; }
         }
 
-        private Uri imageUri;
+        private string imageUri;
 
-        public Uri ImageUri
+        public string ImageUri
         {
             get { return imageUri; }
             set { imageUri = value; }
         }
 
-    }
-    public class ForumCollection : ObservableCollection<ForumList>
-    {
+        private string timeStamp;
+
+        public string TimeStamp
+        {
+            get { return timeStamp; }
+            set { timeStamp = value; }
+        }
 
     }
-    public class ForumList : ObservableCollection<Forum>
+    public class ForumList
     {
-        public string Gid { get; set; }
-        public string GroupName { get; set; }
-    }
-    public class Forum
-    {
-        public string Fid { get; set; }
-        public string Title { get; set; }
-        public string Todaypost { get; set; }
-        public string ForumCover { get; set; }
+        private string title;
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        private Parameter parameter;
+
+        public Parameter Parameter
+        {
+            get { return parameter; }
+            set { parameter = value; }
+        }
+
     }
 
+    public class Parameter
+    {
+        private string parameter1;
+
+        public string Parameter1
+        {
+            get { return parameter1; }
+            set { parameter1 = value; }
+        }
+        private string parameter2;
+
+        public string Parameter2
+        {
+            get { return parameter2; }
+            set { parameter2 = value; }
+        }
+
+        public static implicit operator Parameter(Tuple<string, string> v)
+        {
+            return new Parameter() { Parameter1 = v.Item1, Parameter2 = v.Item2 };
+        }
+    }
 }

@@ -43,8 +43,8 @@ namespace LaCODESoftware.Tsdm.Commands
             }
             else if (command=="Renew")
             {
-                loginWindow.VerfyCodeStream = new BitmapImage();
                 loginWindow.VerfyCodeStream = new BitmapImage(new Uri("http://www.tsdm.me/plugin.php?id=oracle:verify"));
+                loginWindow.Window.UpdateLayout();
             }
         }
         public async void Login()
@@ -54,7 +54,7 @@ namespace LaCODESoftware.Tsdm.Commands
             {
                 loginWindow.Person.PersonCookie = tuple.Item2;
                 Json personinfo = (await TsdmHelper.UserInfoAsync(tuple.Item2)).Item1;
-                loginWindow.Person.ImageUri = new Uri(personinfo.avatar);
+                loginWindow.Person.ImageUri = personinfo.avatar;
                 loginWindow.Person.Uid = Int32.Parse(personinfo.uid);
                 loginWindow.Person.ReadAcess = Int32.Parse(personinfo.readaccess);
                 loginWindow.Person.Username = personinfo.username;
@@ -64,8 +64,9 @@ namespace LaCODESoftware.Tsdm.Commands
             }
             else
             {
-                MessageBox.Show("登录失败", String.Format("因某些原因登录失败错误代码:{0}", "Log_Failed"), MessageBoxButton.OK);
+                MessageBox.Show(String.Format("因某些原因登录失败错误代码:{0}", "Log_Failed"), "登录失败", MessageBoxButton.OK);
                 loginWindow.VerfyCodeStream = new BitmapImage(new Uri("http://www.tsdm.me/plugin.php?id=oracle:verify"));
+                loginWindow.Window.UpdateLayout();
             }
         }
         public async void Check()
@@ -75,6 +76,7 @@ namespace LaCODESoftware.Tsdm.Commands
             {
                 loginWindow.Userexist = true;
                 loginWindow.Avatar = new BitmapImage(new Uri(personinfo.avatar));
+                loginWindow.Window.UpdateLayout();
             }
         }
     }
